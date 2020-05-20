@@ -12,7 +12,7 @@ import { config } from "./config";
 /* Constants */
 let CurrentStore = null;
 
-export const ReduxQL = {
+export const ReduxNL = {
   setup: ({ store, delay, defaultErrorMessage, isDev = false }) => {
     CurrentStore = store;
 
@@ -23,7 +23,7 @@ export const ReduxQL = {
   },
 
   post: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
-    ReduxQL.dispatch({
+    ReduxNL.dispatch({
       verb: "post",
       path,
       payload,
@@ -35,7 +35,7 @@ export const ReduxQL = {
   },
 
   patch: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
-    ReduxQL.dispatch({
+    ReduxNL.dispatch({
       verb: "patch",
       path,
       payload,
@@ -47,7 +47,7 @@ export const ReduxQL = {
   },
 
   get: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
-    ReduxQL.dispatch({
+    ReduxNL.dispatch({
       verb: "post",
       path,
       payload,
@@ -59,7 +59,7 @@ export const ReduxQL = {
   },
 
   delete: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
-    ReduxQL.dispatch({
+    ReduxNL.dispatch({
       verb: "delete",
       payload,
       meta,

@@ -3,6 +3,6 @@
  * @description exports our consumer API
  */
 
-export * from "../redux-ql-saga";
-export * from "../redux-ql";
+export * from "../redux-nl-saga";
+export * from "../redux-nl";
 export * from "./action-reducer";

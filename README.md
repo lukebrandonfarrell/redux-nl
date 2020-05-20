@@ -14,9 +14,9 @@
   <hr />
 </p>
 
-# Redux-QL
+# Redux Network Layer (Redux NL)
 
-Redux QL is a network layer for your application powered by redux and redux-saga heavily inspired by GraphQL clients such as react-relay. 
+Redux Network Layer is a network layer for your application powered by redux and redux-saga heavily inspired by GraphQL clients such as react-relay. 
 
 ## Prerequisites
 
@@ -25,41 +25,41 @@ This requires that you have both [redux](https://redux.js.org/) and [redux-saga]
 ## Setup
 
 ```
-npm install redux-ql
+npm install redux-nl
 ```
 
-For ReduxQL to work correctly you need to setup both the redux-ql saga and action reducer. 
+For ReduxNL to work correctly you need to setup both the redux-nl saga and action reducer. 
 
-The ReduxQL saga powers your networks layer. This can be spawned into your root reducer with the secound parameter of the spawn function as your API base url e.g. `https://my-example-api/`. Configuring the URL in this manner allows you to setup different URLs for local, sandbox and production environments. The third parameter is your API specification, example below. **We are looking at ways to auto-generate the API specification at compile-time from a `/spec` endpoint defined in your API**.
+The ReduxNL saga powers your networks layer. This can be spawned into your root reducer with the secound parameter of the spawn function as your API base url e.g. `https://my-example-api/`. Configuring the URL in this manner allows you to setup different URLs for local, sandbox and production environments. The third parameter is your API specification, example below. **We are looking at ways to auto-generate the API specification at compile-time from a `/spec` endpoint defined in your API**.
 
 ```
-import ReduxQLSaga from "redux-ql";
+import ReduxNLSaga from "redux-nl";
 import { spawn } from "redux-saga";
 import APISpecification from "../example-api.js";
 
 export function* rootSaga() {
   yield all([
-    // ReduxQL Network Sagas
-    spawn(ReduxQLSaga, ApiUrl, APISpecification),
+    // ReduxNL Network Sagas
+    spawn(ReduxNLSaga, ApiUrl, APISpecification),
     ...
 ```
 
-The ReduxQL action reducer records a temporary instance of you latest action fired into the redux store, this allows us to provide the smart ReduxQL callbacks inside our React components. You need to add the following to your `combineReducers` function:
+The ReduxNL action reducer records a temporary instance of you latest action fired into the redux store, this allows us to provide the smart ReduxNL callbacks inside our React components. You need to add the following to your `combineReducers` function:
 
 ```
-import { ActionReducer } from "../libs/redux-ql";
+import { ActionReducer } from "../libs/redux-nl";
 
 const rootReducer = combineReducers({
     action: ActionReducer,
     ...
 ```
 
-Lastly, we need to configure ReduxQL by running the setup function after you intialie your store. This takes a few parameters which will allow you to customise your network layer.
+Lastly, we need to configure ReduxNL by running the setup function after you intialie your store. This takes a few parameters which will allow you to customise your network layer.
 
 ```
 const store = createStore(rootReducer, middleware);
 
-ReduxQL.setup({ 
+ReduxNL.setup({ 
   store,
   delay: 1000, <--- adds a network delay for testing slow connections
   isDev: false <--- Things like delay and console.warns will be ignored when this is false
@@ -71,13 +71,13 @@ ReduxQL.setup({
 
 ## Usage
 
-ReduxQL allows you to make request from your React components (or outside your react components) and listen to the status of that request... the only difference is that ReduxQL dispatches the request result to the Redux store, allowing you to also update your global state.
+ReduxNL allows you to make request from your React components (or outside your react components) and listen to the status of that request... the only difference is that ReduxNL dispatches the request result to the Redux store, allowing you to also update your global state.
 
 The below example allows you to update your component in response to the fired request. You can pass paramters via the `payload` and `meta` properties, these will be used in your network request, more details below. The libary follows the [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) specification for redux actions.
 
 
 ```
-ReduxQL.post("/user/brands/{slug}", {
+ReduxNL.post("/user/brands/{slug}", {
   payload: { slug },
   meta: {
     apiToken: authToken
@@ -97,7 +97,7 @@ ReduxQL.post("/user/brands/{slug}", {
 The above example will dispatch a `CREATE_USER_BRANDS_SLUG_RESPONSE` to the store once the request has completed (success or failure). You can listen to these actions in your reducer by using some redux-ql utilities:
 
 ```
-const CreateBrandResponse = ReduxQL.response.type.post("/user/brands/{slug}");
+const CreateBrandResponse = ReduxNL.response.type.post("/user/brands/{slug}");
 const InitialState = {
   data: [],
   updatedAt: null
@@ -112,15 +112,15 @@ export default (state = InitialState, action) => {
 Available methods for fetching the action type string:
 
 ```
-const CreateBrandResponse = ReduxQL.response.type.post("/user/brands/{slug}") -> CREATE_USER_BRANDS_SLUG_RESPONSE
-const UpdateBrandResponse = ReduxQL.response.type.patch("/user/brands/{slug}") -> UPDATE_USER_BRANDS_SLUG_RESPONSE
-const DeleteBrandResponse = ReduxQL.response.type.delete("/user/brands/{slug}") -> DELETE_USER_BRANDS_SLUG_RESPONSE
-const FetchBrandResponse = ReduxQL.response.type.get("/user/brands/{slug}") -> FETCH_USER_BRANDS_SLUG_RESPONSE
+const CreateBrandResponse = ReduxNL.response.type.post("/user/brands/{slug}") -> CREATE_USER_BRANDS_SLUG_RESPONSE
+const UpdateBrandResponse = ReduxNL.response.type.patch("/user/brands/{slug}") -> UPDATE_USER_BRANDS_SLUG_RESPONSE
+const DeleteBrandResponse = ReduxNL.response.type.delete("/user/brands/{slug}") -> DELETE_USER_BRANDS_SLUG_RESPONSE
+const FetchBrandResponse = ReduxNL.response.type.get("/user/brands/{slug}") -> FETCH_USER_BRANDS_SLUG_RESPONSE
 
-const CreateBrandRequest = ReduxQL.request.type.post("/user/brands/{slug}") -> CREATE_USER_BRANDS_SLUG_REQUEST
-const UpdateBrandRequest = ReduxQL.request.type.patch("/user/brands/{slug}") -> UPDATE_USER_BRANDS_SLUG_REQUEST
-const DeleteBrandRequest = ReduxQL.request.type.delete("/user/brands/{slug}") -> DELETE_USER_BRANDS_SLUG_REQUEST
-const FetchBrandRequest = ReduxQL.request.type.get("/user/brands/{slug}") -> FETCH_USER_BRANDS_SLUG_REQUEST
+const CreateBrandRequest = ReduxNL.request.type.post("/user/brands/{slug}") -> CREATE_USER_BRANDS_SLUG_REQUEST
+const UpdateBrandRequest = ReduxNL.request.type.patch("/user/brands/{slug}") -> UPDATE_USER_BRANDS_SLUG_REQUEST
+const DeleteBrandRequest = ReduxNL.request.type.delete("/user/brands/{slug}") -> DELETE_USER_BRANDS_SLUG_REQUEST
+const FetchBrandRequest = ReduxNL.request.type.get("/user/brands/{slug}") -> FETCH_USER_BRANDS_SLUG_REQUEST
 ```
 
 #### Request Parameters

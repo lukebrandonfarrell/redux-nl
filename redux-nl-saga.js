@@ -13,7 +13,7 @@ import { getRequestType } from "./get-request-type";
 import { getResponseType } from "./get-response-type";
 import { createRequest } from "./create-request";
 
-export function* ReduxQLSaga(baseUrl, file) {
+export function* ReduxNLSaga(baseUrl, file) {
   const sagas = file.map(({ path, method }) => {
     const requestAction = getRequestType(method, path);
     const responseAction = getResponseType(method, path);
