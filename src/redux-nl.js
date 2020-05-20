@@ -48,7 +48,7 @@ export const ReduxNL = {
 
   get: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: "post",
+      verb: "get",
       path,
       payload,
       meta,
