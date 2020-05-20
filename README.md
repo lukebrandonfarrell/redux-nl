@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/aspect-apps/redux-ql/master/redux-ql/assets/thumbnail-dark-redux-ql.png" width="190" height="190">
+  <img src="https://raw.githubusercontent.com/aspect-apps/redux-ql/master/assets/thumbnail-dark-redux-ql.png" width="190" height="190">
   <br />
   <a href="https://www.npmjs.com/package/thumbnail-dark-redux-ql" rel="nofollow">
     <img src="https://img.shields.io/npm/v/thumbnail-dark-redux-ql.svg?style=flat-square" alt="version" style="max-width:100%;" />
