@@ -1,0 +1,34 @@
+{
+    "name": "redux-ql",
+    "version": "0.1.0",
+    "description": "A GraphQL inspired rest client side network layer",
+    "keywords": [
+      "react-native",
+      "redux",
+      "redux-saga",
+      "react-relay",
+      "rest",
+      "network-layer",
+      "global-state"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/aspect-apps/redux-ql.git"
+    },
+    "main": "src/index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "flow": "flow",
+      "build": "flow-remove-types src/ -d lib/"
+    },
+    "author": "Luke Brandon Farrell",
+    "license": "MIT",
+    "readme": "README.md",
+    "dependencies": {
+        "axios": "^0.19.2"
+    },
+    "peerDependencies": {
+        "redux": ">= 4.x",
+        "redux-saga": ">= 1.x"
+    }
+  }

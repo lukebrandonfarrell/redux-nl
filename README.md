@@ -1,3 +1,18 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aspect-apps/redux-ql/master/redux-ql/assets/thumbnail-dark-redux-ql.png" width="190" height="190">
+  <br />
+  <a href="https://www.npmjs.com/package/thumbnail-dark-redux-ql" rel="nofollow">
+    <img src="https://img.shields.io/npm/v/thumbnail-dark-redux-ql.svg?style=flat-square" alt="version" style="max-width:100%;" />
+  </a>
+  <a href="https://www.npmjs.com/package/thumbnail-dark-redux-ql" rel="nofollow">
+    <img src="http://img.shields.io/npm/l/thumbnail-dark-redux-ql.svg?style=flat-square" alt="license" style="max-width:100%;" />
+  </a>
+  <a href="https://www.npmjs.com/package/thumbnail-dark-redux-ql" rel="nofollow">
+    <img src="http://img.shields.io/npm/dt/thumbnail-dark-redux-ql.svg?style=flat-square" alt="downloads" style="max-width:100%;" />
+  </a>
+
+  <hr />
+</p>
 
 # Redux-QL
 

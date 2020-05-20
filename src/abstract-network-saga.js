@@ -5,7 +5,6 @@
 
 /* NPM - Node Package Manage */
 import { call, put, delay } from "redux-saga/effects";
-import dayjs from "dayjs";
 import { config } from "./config";
 
 /**
@@ -42,7 +41,7 @@ function* AbstractNetworkSaga(
       type,
       payload: {
         data,
-        [key]: dayjs().toISOString(),
+        [key]: new Date().toISOString(),
         ...payloadChain
       },
       meta: { ...metaChain },
