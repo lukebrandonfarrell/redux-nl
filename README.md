@@ -24,7 +24,7 @@ This requires that you have both [redux](https://redux.js.org/) and [redux-saga]
 
 ## Setup
 
-```
+```sh
 npm install redux-nl
 ```
 
@@ -32,7 +32,7 @@ For ReduxNL to work correctly you need to setup both the redux-nl saga and actio
 
 The ReduxNL saga powers your networks layer. This can be spawned into your root reducer with the secound parameter of the spawn function as your API base url e.g. `https://my-example-api/`. Configuring the URL in this manner allows you to setup different URLs for local, sandbox and production environments. The third parameter is your API specification, example below. **We are looking at ways to auto-generate the API specification at compile-time from a `/spec` endpoint defined in your API**.
 
-```
+```js
 import ReduxNLSaga from "redux-nl";
 import { spawn } from "redux-saga";
 import APISpecification from "../example-api.js";
@@ -46,7 +46,7 @@ export function* rootSaga() {
 
 The ReduxNL action reducer records a temporary instance of you latest action fired into the redux store, this allows us to provide the smart ReduxNL callbacks inside our React components. You need to add the following to your `combineReducers` function:
 
-```
+```js
 import { ActionReducer } from "../libs/redux-nl";
 
 const rootReducer = combineReducers({
@@ -56,7 +56,7 @@ const rootReducer = combineReducers({
 
 Lastly, we need to configure ReduxNL by running the setup function after you intialie your store. This takes a few parameters which will allow you to customise your network layer.
 
-```
+```js
 const store = createStore(rootReducer, middleware);
 
 ReduxNL.setup({ 
@@ -76,7 +76,7 @@ ReduxNL allows you to make request from your React components (or outside your r
 The below example allows you to update your component in response to the fired request. You can pass paramters via the `payload` and `meta` properties, these will be used in your network request, more details below. The libary follows the [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) specification for redux actions.
 
 
-```
+```js
 ReduxNL.post("/user/brands/{slug}", {
   payload: { slug },
   meta: {
@@ -96,7 +96,7 @@ ReduxNL.post("/user/brands/{slug}", {
 
 The above example will dispatch a `CREATE_USER_BRANDS_SLUG_RESPONSE` to the store once the request has completed (success or failure). You can listen to these actions in your reducer by using some redux-ql utilities:
 
-```
+```js
 const CreateBrandResponse = ReduxNL.response.type.post("/user/brands/{slug}");
 const InitialState = {
   data: [],
@@ -111,7 +111,7 @@ export default (state = InitialState, action) => {
 
 Available methods for fetching the action type string:
 
-```
+```js
 const CreateBrandResponse = ReduxNL.response.type.post("/user/brands/{slug}") -> CREATE_USER_BRANDS_SLUG_RESPONSE
 const UpdateBrandResponse = ReduxNL.response.type.patch("/user/brands/{slug}") -> UPDATE_USER_BRANDS_SLUG_RESPONSE
 const DeleteBrandResponse = ReduxNL.response.type.delete("/user/brands/{slug}") -> DELETE_USER_BRANDS_SLUG_RESPONSE
@@ -137,7 +137,9 @@ Route parameters are defined in your api specification as so `/user/brands/{slug
 
 ## API Spec Example
 
-```
+```js
+// example-api.js
+
 export default [
     { path: "/auth/login", method: "POST" },
     { path: "/auth/password-reset", method: "POST" },
