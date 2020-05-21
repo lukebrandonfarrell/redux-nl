@@ -5,7 +5,6 @@
 
 /* NPM - Node Package Manage */
 import Axios from "axios";
-import { getUniqueId } from "react-native-device-info";
 
 // Optional headers.
 const headers = {};
@@ -24,7 +23,6 @@ const axios = (base, method, path, options = {}) => {
     method,
     url: `${base}${path}`,
     headers: {
-      "Device-ID": getUniqueId(),
       ...headers
     },
     ...options
