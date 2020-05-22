@@ -4,7 +4,7 @@
  */
 
 /* NPM - Node Package Manage */
-import _castArray from "lodash/castArray";
+import _castArray from "lodash.castarray";
 /* Local Modules */
 import { getRequestType } from "./get-request-type";
 import { getResponseType } from "./get-response-type";

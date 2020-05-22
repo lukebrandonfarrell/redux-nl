@@ -3,7 +3,7 @@
  * @description
  */
 
-import _snakeCase from "lodash/snakeCase";
+import _snakeCase from "lodash.snakecase";
 import { getActionVerb } from "./get-action-verb";
 
 /**

@@ -25,7 +25,11 @@
   "license": "MIT",
   "readme": "README.md",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "lodash.castarray": "^4.4.0",
+    "lodash.mapkeys": "^4.6.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.snakecase": "^4.1.1"
   },
   "peerDependencies": {
     "redux": ">= 4.x",

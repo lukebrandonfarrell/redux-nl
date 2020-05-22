@@ -5,8 +5,8 @@
 
 /* NPM - Node Package Manage */
 import { takeLatest, all } from "redux-saga/effects";
-import _snakeCase from "lodash/snakeCase";
-import _mapKeys from "lodash/mapKeys";
+import _snakeCase from "lodash.snakecase";
+import _mapKeys from "lodash.mapkeys";
 /* Local Modules */
 import { AbstractNetworkSaga } from "./abstract-network-saga";
 import { getRequestType } from "./get-request-type";
@@ -23,7 +23,7 @@ export function* ReduxNLSaga(baseUrl, file) {
         const payloadInSnakeCase = _mapKeys(payload, (_, key) =>
           _snakeCase(key)
         );
-        const metaInSnakeCase = _mapKeys(meta, (_, key) => _snakeCase(key));
+        const metaInSnakeCase = _.omit(_mapKeys(meta, (_, key) => _snakeCase(key)), ["headers"]);
         // Extracts parameters from brackets e.g. "/user/orders/{id}" -> id (only supports a single query parameter)
         const extractedPathParameter = path
           .match(/\{(.+?)\}/g)?.[0]
