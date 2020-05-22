@@ -50,19 +50,18 @@ export function* ReduxNLSaga(baseUrl, file) {
         //   },
         //   value => (value === "" ? null : value)
         // );
-
         //
+        
         createRequest
-          .request(baseUrl, method.toLowerCase(), url, payloadInSnakeCase)
+          .request(baseUrl, method.toLowerCase(), url, payloadInSnakeCase, meta?.headers)
           .then(response => resolve(createRequest.normlzDataResponse(response)))
           .catch(error => reject(error));
       });
 
-     console.log({ requestAction, responseAction, baseUrl, requestPromise });
     return takeLatest(requestAction, action =>
       AbstractNetworkSaga(action, baseUrl, requestPromise, responseAction)
     );
   });
-  console.log({ sagas })
+
   yield all(sagas);
 }

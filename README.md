@@ -135,6 +135,19 @@ Query parameters e.g. `https://my-example-api/user?api_token=..."` are automatic
 
 Route parameters are defined in your api specification as so `/user/brands/{slug}`. In this example, when a value with the key of `slug` is passed thorugh then it is automatically replaced in the URL e.g. `/user/brands/{slug}` -> `/user/brands/apple`.
 
+#### Headers
+
+```
+{
+  ...
+  meta: {
+    headers: {
+      ... <---
+    }
+  }
+}
+```
+
 ## API Spec Example
 
 ```js
@@ -166,4 +179,3 @@ export default [
 
 - Only supports a single API connection.
 - Only supports single path parameter e.g. `"/{user}/orders/{id}"` would break the module.
-- No support for request headers. Although support could be added via a PR by allowing a `headers` key inside the action `meta`.

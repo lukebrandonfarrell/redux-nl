@@ -6,9 +6,6 @@
 /* NPM - Node Package Manage */
 import Axios from "axios";
 
-// Optional headers.
-const headers = {};
-
 /**
  * Sends a request to the API using Axios
  *
@@ -16,9 +13,10 @@ const headers = {};
  * @param method
  * @param path
  * @param options
+ * @param headers
  * @return {Promise}
  */
-const axios = (base, method, path, options = {}) => {
+const axios = (base, method, path, options = {}, headers) => {
   const params = {
     method,
     url: `${base}${path}`,
@@ -38,18 +36,8 @@ const axios = (base, method, path, options = {}) => {
 };
 
 const createRequest = {
-  /**
-   * Add headers to this request instance.
-   *
-   * @param key
-   * @param value
-   */
-  addHeader: (key, value) => {
-    headers[key] = value;
-  },
-
-  request: (base, method, path, options) => {
-    return axios(base, method, path, { data: { ...options } });
+  request: (base, method, path, options, headers) => {
+    return axios(base, method, path, { data: { ...options } }, headers);
   },
 
   /**
@@ -61,8 +49,8 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  get: (base, path, options) => {
-    return axios(base, "get", path, options);
+  get: (base, path, options, headers) => {
+    return axios(base, "get", path, options, headers);
   },
 
   /**
@@ -74,8 +62,8 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  post: (base, path, options) => {
-    return axios(base, "post", path, { data: { ...options } });
+  post: (base, path, options, headers) => {
+    return axios(base, "post", path, { data: { ...options } }, headers);
   },
 
   /**
@@ -87,8 +75,8 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  patch: (base, path, options) => {
-    return axios(base, "patch", path, { data: { ...options } });
+  patch: (base, path, options, headers) => {
+    return axios(base, "patch", path, { data: { ...options } }, headers);
   },
 
   /**
@@ -100,8 +88,8 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  destroy: (base, path, options) => {
-    return axios(base, "delete", path, options);
+  destroy: (base, path, options, headers) => {
+    return axios(base, "delete", path, options, headers);
   },
 
   /**
