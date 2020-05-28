@@ -118,15 +118,6 @@ const createRequest = {
 
     return `${url}${query.replace("&", "?")}`;
   },
-
-  /**
-   * Normalises a successful response.
-   *
-   * @return {*[]}
-   */
-  normlzDataResponse: response => {
-    return response.data.data || [];
-  }
 };
 
 export { createRequest };

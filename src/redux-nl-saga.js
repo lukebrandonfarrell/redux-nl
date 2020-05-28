@@ -25,15 +25,22 @@ export function* ReduxNLSaga(baseUrl, file) {
           _snakeCase(key)
         );
         const metaInSnakeCase = _omit(_mapKeys(meta, (_, key) => _snakeCase(key)), ["headers"]);
-        // Extracts parameters from brackets e.g. "/user/orders/{id}" -> id (only supports a single query parameter)
-        const extractedPathParameter = path
-          .match(/\{(.+?)\}/g)?.[0]
-          ?.replace(/\{|}/g, "");
-        // This replaces path parameters with a variable from our 'payload' -> "/user/orders/{id}" -> "/user/orders/35"
-        const pathWithParams = path.replace(
-          /\{(.+?)\}/g,
-          payloadInSnakeCase[extractedPathParameter]
-        );
+        // Can optionally include parameters in the path
+        let pathWithParams = path;
+
+        // If there are brackets in the request, we need to replace it with a variable in the payload
+        if (path.match(/\{(.+?)\}/g) !== null) {
+          // Extracts parameters from brackets e.g. "/user/orders/{id}" -> id (only supports a single query parameter)
+          const extractedPathParameter = path
+            .match(/\{(.+?)\}/g)?.[0]
+            ?.replace(/\{|}/g, "");
+          // This replaces path parameters with a variable from our 'payload' -> "/user/orders/{id}" -> "/user/orders/35"
+          pathWithParams = path.replace(
+            /\{(.+?)\}/g,
+            payloadInSnakeCase[extractedPathParameter]
+          );
+        }
+        // Build the URL for the request
         const url = createRequest.build(pathWithParams, metaInSnakeCase);
 
         // const payload = _mapValues(
@@ -55,7 +62,7 @@ export function* ReduxNLSaga(baseUrl, file) {
         
         createRequest
           .request(baseUrl, method.toLowerCase(), url, payloadInSnakeCase, meta?.headers)
-          .then(response => resolve(createRequest.normlzDataResponse(response)))
+          .then(response => resolve(response))
           .catch(error => reject(error));
       });
 
