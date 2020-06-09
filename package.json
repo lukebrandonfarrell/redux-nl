@@ -1,6 +1,6 @@
 {
   "name": "redux-nl",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A GraphQL inspired rest client side network layer",
   "keywords": [
     "react-native",
