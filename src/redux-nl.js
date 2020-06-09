@@ -61,6 +61,7 @@ export const ReduxNL = {
   delete: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
       verb: "delete",
+      path,
       payload,
       meta,
       onSuccess,
