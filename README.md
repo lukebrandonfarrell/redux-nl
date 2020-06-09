@@ -92,6 +92,21 @@ ReduxNL.post("/user/brands/{slug}", {
 
   }
 });
+
+// -- You can also write the call as a promise --
+
+ReduxNl.promise.post("/user/brands/{slug}").then(...).catch();
+
+// OR...
+
+try {
+  const action = await ReduxNl.promise.post("/user/brands/{slug}");
+} catch(action){
+  // Handle error
+} finally {
+  // Do something
+}
+
 ```
 
 The above example will dispatch a `CREATE_USER_BRANDS_SLUG_RESPONSE` to the store once the request has completed (success or failure). You can listen to these actions in your reducer by using some redux-ql utilities:

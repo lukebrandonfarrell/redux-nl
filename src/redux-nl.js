@@ -112,6 +112,66 @@ export const ReduxNL = {
     unsubscribe = CurrentStore.subscribe(handleChange);
   },
 
+  // Promise support :)
+  promise: {
+    post: (path, { payload, meta }) => {
+      return new Promise((resolve, reject) => {
+          ReduxNL.post(path, {
+              payload,
+              meta,
+              onSuccess: action => {
+                  resolve(action);
+              },
+              onFailure: action => {
+                  reject(action);
+              }
+          });
+      });
+    },
+    get: (path, { payload, meta }) => {
+        return new Promise((resolve, reject) => {
+            ReduxNL.get(path, {
+                payload,
+                meta,
+                onSuccess: action => {
+                    resolve(action);
+                },
+                onFailure: action => {
+                    reject(action);
+                }
+            });
+        });
+    },
+    patch: (path, { payload, meta }) => {
+      return new Promise((resolve, reject) => {
+          ReduxNL.get(path, {
+              payload,
+              meta,
+              onSuccess: action => {
+                  resolve(action);
+              },
+              onFailure: action => {
+                  reject(action);
+              }
+          });
+      });
+    },
+    delete: (path, { payload, meta }) => {
+      return new Promise((resolve, reject) => {
+          ReduxNL.get(path, {
+              payload,
+              meta,
+              onSuccess: action => {
+                  resolve(action);
+              },
+              onFailure: action => {
+                  reject(action);
+              }
+          });
+      });
+    },
+  },
+
   request: {
     type: {
       get: (path) => {
