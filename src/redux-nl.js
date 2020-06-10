@@ -99,7 +99,7 @@ export const ReduxNL = {
           if (typeof onFailure === "function") onFailure(action);
         }
 
-        if (typeof onFinal === "function") onFinal();
+        if (typeof onFinal === "function") onFinal(action);
         if (typeof unsubscribe === "function") unsubscribe();
       }
     };
