@@ -23,8 +23,13 @@ const axios = (base, method, path, options = {}, headers) => {
     headers: {
       ...headers
     },
-    ...options
   };
+
+  // In iOS 13, a GET request is not allowed to have any request body
+  if (method !== 'get') {
+    Object.assign(params, { ...options })
+  }
+
 
   return Axios(params)
     .then(response => {
