@@ -42,24 +42,7 @@ export function* ReduxNLSaga(baseUrl, file) {
         }
         // Build the URL for the request
         const url = createRequest.build(pathWithParams, metaInSnakeCase);
-
-        // const payload = _mapValues(
-        //   {
-        //     amount: value,
-        //     source,
-        //     use_credits: useCredit,
-        //     campaign_id: campaignId,
-        //     is_gift: isGift,
-        //     gift_name: giftName,
-        //     gift_message: giftMessage,
-        //     gift_send_date: giftDateTime,
-        //     gift_email: giftEmail,
-        //     gift_phone: giftPhone
-        //   },
-        //   value => (value === "" ? null : value)
-        // );
-        //
-        
+          
         createRequest
           .request(baseUrl, method.toLowerCase(), url, payloadInSnakeCase, meta?.headers)
           .then(response => resolve(response))
