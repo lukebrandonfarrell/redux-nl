@@ -1,6 +1,6 @@
 /**
  * @author Luke Brandon Farrell
- * @description Application reducer.
+ * @description
  */
 
 /**

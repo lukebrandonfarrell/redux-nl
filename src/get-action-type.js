@@ -20,7 +20,6 @@ export function getActionType(verb, path, suffix) {
   const pathAsActionType = _snakeCase(
     path
       .replace(/\//g, "_")
-      .replace(/\{|}/g, "")
   ).toUpperCase();
 
   return `${actionVerb}_${pathAsActionType}_${suffix}`;

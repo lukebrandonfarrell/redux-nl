@@ -4,7 +4,7 @@
  */
 
 /* NPM - Node Package Manage */
-import { takeLatest, all } from "redux-saga/effects";
+import { take, all, call } from "redux-saga/effects";
 import _snakeCase from "lodash.snakecase";
 import _mapKeys from "lodash.mapkeys";
 import _omit from "lodash.omit";
@@ -14,11 +14,14 @@ import { getRequestType } from "./get-request-type";
 import { getResponseType } from "./get-response-type";
 import { createRequest } from "./create-request";
 
-export function* ReduxNLSaga(baseUrl, file) {
-  const sagas = file.map(({ path, method }) => {
-    const requestAction = getRequestType(method, path);
-    const responseAction = getResponseType(method, path);
-    const requestPromise = (baseUrl, payload = {}, meta = {}) =>
+export function* ReduxNLSaga(baseUrl) {
+  while (true){
+    const action = yield take(action => /@ReduxNL$/.test(action.type));
+    // const path = // get path from action;
+    // const method = // get method from action;
+    // const responseAction = // invert request action
+
+    const requestPromise = (baseUrl, payload = {}, meta = {}) => {
       new Promise((resolve, reject) => {
         // Maps our payload and meta to snake case e.g. firstName -> first_name
         const payloadInSnakeCase = _mapKeys(payload, (_, key) =>
@@ -48,11 +51,28 @@ export function* ReduxNLSaga(baseUrl, file) {
           .then(response => resolve(response))
           .catch(error => reject(error));
       });
+    };
 
-    return takeLatest(requestAction, action =>
-      AbstractNetworkSaga(action, baseUrl, requestPromise, responseAction)
-    );
-  });
+    yield call(AbstractNetworkSaga, action, baseUrl, requestPromise, responseAction)
+  }
+}
 
-  yield all(sagas);
+function getPathURLFromReduxType(type){
+  const actionVerb = getActionVerb(verb);
+  const pathAsActionType = _snakeCase(type.replace(/\//g, "_")).toUpperCase();
+
+  return `${actionVerb}_${pathAsActionType}_${suffix}`;
+}
+
+function getPathVerb(){
+  switch (verb.toUpperCase()) {
+    case "GET":
+      return "FETCH";
+    case "PATCH":
+      return "UPDATE";
+    case "POST":
+      return "CREATE";
+    case "DELETE":
+      return "DELETE";
+    }
 }
