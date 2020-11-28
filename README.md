@@ -1,14 +1,14 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/aspect-apps/redux-ql/master/assets/thumbnail-dark-redux-ql.png" width="190" height="190">
   <br />
-  <a href="https://www.npmjs.com/package/aspect-apps/redux-nl" rel="nofollow">
-    <img src="https://img.shields.io/npm/v/aspect-apps/redux-nl.svg?style=flat-square" alt="version" style="max-width:100%;" />
+  <a href="https://www.npmjs.com/package/redux-nl" rel="nofollow">
+    <img src="https://img.shields.io/npm/v/redux-nl.svg?style=flat-square" alt="version" style="max-width:100%;" />
   </a>
-  <a href="https://www.npmjs.com/package/aspect-apps/redux-nl" rel="nofollow">
-    <img src="http://img.shields.io/npm/l/aspect-apps/redux-nl.svg?style=flat-square" alt="license" style="max-width:100%;" />
+  <a href="https://www.npmjs.com/package/redux-nl" rel="nofollow">
+    <img src="http://img.shields.io/npm/l/redux-nl.svg?style=flat-square" alt="license" style="max-width:100%;" />
   </a>
-  <a href="https://www.npmjs.com/package/aspect-apps/redux-nl" rel="nofollow">
-    <img src="http://img.shields.io/npm/dt/aspect-apps/redux-nl.svg?style=flat-square" alt="downloads" style="max-width:100%;" />
+  <a href="https://www.npmjs.com/package/redux-nl" rel="nofollow">
+    <img src="http://img.shields.io/npm/dt/redux-nl.svg?style=flat-square" alt="downloads" style="max-width:100%;" />
   </a>
 
   <hr />
