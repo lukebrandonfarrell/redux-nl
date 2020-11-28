@@ -1,7 +1,47 @@
 {
-  "name": "redux-nl",
-  "version": "0.1.14",
+  "_from": "redux-nl",
+  "_id": "redux-nl@0.1.14",
+  "_inBundle": false,
+  "_integrity": "sha512-nH4sbHMnUjdo8UcqYL5TWHTueoBQhiiFN73XJ96lzM6oHSOw9B6FtrdVcFO0vejYbIsmGqHl2vfdRSIYAzgfFQ==",
+  "_location": "/redux-nl",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "redux-nl",
+    "name": "redux-nl",
+    "escapedName": "redux-nl",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/redux-nl/-/redux-nl-0.1.14.tgz",
+  "_shasum": "9b65f8916c80f5be264dea9c5afa39f14a23c7ed",
+  "_spec": "redux-nl",
+  "_where": "/Users/user/Desktop/Projects/redux-nl-example",
+  "author": {
+    "name": "Luke Brandon Farrell"
+  },
+  "bugs": {
+    "url": "https://github.com/aspect-apps/redux-nl/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash.castarray": "^4.4.0",
+    "lodash.hasin": "^4.5.2",
+    "lodash.mapkeys": "^4.6.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.snakecase": "^4.1.1",
+    "lodash.startcase": "^4.4.0"
+  },
+  "deprecated": false,
   "description": "A GraphQL inspired rest client side network layer",
+  "homepage": "https://github.com/aspect-apps/redux-nl#readme",
   "keywords": [
     "react-native",
     "redux",
@@ -11,29 +51,21 @@
     "network-layer",
     "global-state"
   ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "redux-nl",
+  "peerDependencies": {
+    "redux": ">= 4.x",
+    "redux-saga": ">= 1.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aspect-apps/redux-nl.git"
   },
-  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "build": "flow-remove-types src/ -d lib/",
     "flow": "flow",
-    "build": "flow-remove-types src/ -d lib/"
+    "test": "echo \"Error: no test specified\""
   },
-  "author": "Luke Brandon Farrell",
-  "license": "MIT",
-  "readme": "README.md",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "lodash.castarray": "^4.4.0",
-    "lodash.mapkeys": "^4.6.0",
-    "lodash.omit": "^4.5.0",
-    "lodash.snakecase": "^4.1.1",
-    "lodash.camelcase": "^4.1.1"
-  },
-  "peerDependencies": {
-    "redux": ">= 4.x",
-    "redux-saga": ">= 1.x"
-  }
+  "version": "0.1.14"
 }

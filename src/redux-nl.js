@@ -9,22 +9,26 @@ import _castArray from "lodash.castarray";
 import { getRequestType } from "./get-request-type";
 import { getResponseType } from "./get-response-type";
 import { config } from "./config";
+import { RestVerbs } from "./rest-verbs";
+import { listenForReduxNLActions } from "./listen-for-redux-nl-actions";
 /* Constants */
 let CurrentStore = null;
 
 export const ReduxNL = {
-  setup: ({ store, delay, defaultErrorMessage, isDev = false }) => {
+  setup: (store, sagaMiddleware, { delay, defaultUrl, defaultErrorMessage, isDev = false }) => {
     CurrentStore = store;
 
     // Set lib configuration
     config.isDev = isDev;
     if(delay) config.networkDelay = delay;
     if(defaultErrorMessage) config.errorMessage = defaultErrorMessage;
+
+    sagaMiddleware.run(listenForReduxNLActions, defaultUrl);
   },
 
   post: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: "post",
+      verb: RestVerbs.Post,
       path,
       payload,
       meta,
@@ -36,7 +40,7 @@ export const ReduxNL = {
 
   patch: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: "patch",
+      verb: RestVerbs.Patch,
       path,
       payload,
       meta,
@@ -48,7 +52,7 @@ export const ReduxNL = {
 
   get: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: "get",
+      verb: RestVerbs.Get,
       path,
       payload,
       meta,
@@ -60,7 +64,7 @@ export const ReduxNL = {
 
   delete: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: "delete",
+      verb: RestVerbs.Delete,
       path,
       payload,
       meta,
@@ -176,32 +180,32 @@ export const ReduxNL = {
   request: {
     type: {
       get: (path) => {
-        return getRequestType("GET", path);
+        return getRequestType(RestVerbs.Get, path);
       },
       post: (path) => {
-        return getRequestType("POST", path);
+        return getRequestType(RestVerbs.Post, path);
       },
       patch: (path) => {
-        return getRequestType("PATCH", path);
+        return getRequestType(RestVerbs.Patch, path);
       },
       delete: (path) => {
-        return getRequestType("DELETE", path);
+        return getRequestType(RestVerbs.Delete, path);
       },
     },
   },
   response: {
     type: {
       get: (path) => {
-        return getResponseType("GET", path);
+        return getResponseType(RestVerbs.Get, path);
       },
       post: (path) => {
-        return getResponseType("POST", path);
+        return getResponseType(RestVerbs.Post, path);
       },
       patch: (path) => {
-        return getResponseType("PATCH", path);
+        return getResponseType(RestVerbs.Patch, path);
       },
       delete: (path) => {
-        return getResponseType("DELETE", path);
+        return getResponseType(RestVerbs.Delete, path);
       },
     },
   },

@@ -1,12 +1,14 @@
 /**
  * @author Luke Brandon Farrell
- * @description
+ * @description This build our action type
+ * for a specific path with the Request suffix
+ * i.e. GET /fetch -> FetchFactsRequest
  */
 
-import { getActionType } from "./get-action-type";
+import { getReduxActionType } from "./get-redux-action-type";
 
 /**
- * Gets our reducer value key from type for REQUEST
+ * Gets our reducer value key from type for Request
  *
  * @param {string} verb
  * @param {string} path
@@ -14,5 +16,5 @@ import { getActionType } from "./get-action-type";
  * @return {string}
  */
 export function getRequestType(verb, path) {
-  return getActionType(verb, path, "REQUEST");
+  return getReduxActionType(verb, path, "Request");
 }

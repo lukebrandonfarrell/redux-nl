@@ -36,6 +36,7 @@ function* AbstractNetworkSaga(
     if(config.isDev) yield delay(config.networkDelay);
 
     const data = yield call(api, baseUrl, payload, meta);
+    console.log({ data, payload });
 
     yield put({
       type,
