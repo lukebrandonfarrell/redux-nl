@@ -35,9 +35,9 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, middleware);
 
 ReduxNL.setup(store, sagaMiddleware, {
-  delay: 1000, <--- adds a network delay for testing slow connections
-  isDev: false <--- Things like delay and console.warns will be ignored when this is false
-  defaultErrorMessage: ".." <--- Custom fallback message
+  delay: 1000, // <--- adds a network delay for testing slow connections
+  isDev: false // <--- Things like delay and console.warns will be ignored when this is false
+  defaultErrorMessage: ".." // <--- Custom fallback message
 });
 ```
 
@@ -126,12 +126,12 @@ const FetchBrandRequest = ReduxNL.request.type.get("/user/brands/{slug}") -> Fet
 All paramters in `payload` are passed as data to POST, UPDATE and DELETE requests. These are automatically mapped to snake_case. i.e.
 
 ```js
-ReduxNl.post('/user/brands', {
+ReduxNl.post("/user/brands", {
   payload: {
     hasCredit: false,
   },
   meta: {
-    apiToken: '...',
+    apiToken: "...",
   },
 });
 ```
@@ -165,10 +165,10 @@ You can add headers in the meta object of your request.
 Query parameters e.g. `https://my-example-api/user?api_token=..."` are automatically added to the URL via the `meta` key. i.e.
 
 ```js
-ReduxNl.post('/user/brands', {
+ReduxNl.post("/user/brands", {
   meta: {
-    date: '2020-11-21',
-    token: 'rAHO82BrgJmshpIHJ8mpTVz2vvPyp1c0X1gjsn6UYDx',
+    date: "2020-11-21",
+    token: "rAHO82BrgJmshpIHJ8mpTVz2vvPyp1c0X1gjsn6UYDx",
   },
 });
 ```
