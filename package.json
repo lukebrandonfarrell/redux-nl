@@ -67,5 +67,5 @@
     "flow": "flow",
     "test": "echo \"Error: no test specified\""
   },
-  "version": "0.1.14"
+  "version": "1.0.0"
 }
