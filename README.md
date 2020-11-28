@@ -179,21 +179,21 @@ The call above will result in a URL as such `/user/brands?date=2020-11-21&token=
 
 Route parameters are dynamically replaced. tTake the following path: `/user/brands/id`, when a value with the key of `id` is passed thorugh the `payload`, then it is automatically replaced in the URL e.g. `/user/brands/id` -> `/user/brands/34`.
 
-### Local Chaining
+#### Local Chaining
 
 In some cases, you may want to pass values from a Request through to a response, so it can be used in your reducer. To support this the network saga supports a `chain` method. i.e.
 
-```
+```js
 ReduxNl.post("/user/brands", {
   meta: {
     chain: {
       ...
     }
   }
-})
+});
+```
 
 Any data inside the `chain` object will be passed through to the `CreateUserBrandsResponse`.
-```
 
 ### Resources
 
