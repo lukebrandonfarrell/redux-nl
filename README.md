@@ -39,8 +39,8 @@ const reducers = combineReducers({
     action: ActionReducer,
     ...
 });
-const middleware = applyMiddleware(...[sagaMiddleware]);
 const sagaMiddleware = createSagaMiddleware();
+const middleware = applyMiddleware(...[sagaMiddleware]);
 const store = createStore(reducers, middleware);
 
 ReduxNL.setup(store, sagaMiddleware, {
