@@ -31,7 +31,7 @@ npm install redux-nl
 For ReduxNL to work correctly you need to run the `ReduxNL.setup` and add the action reduccer. Redux NL is powered by [redux-saga](https://redux-saga.js.org/), below is a basic setup for redux-saga and your redux store.
 
 ```js
-import { ReduxNL } from "redux-nl";
+import { ReduxNL, ActionReducer } from "redux-nl";
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
