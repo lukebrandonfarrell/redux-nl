@@ -44,6 +44,7 @@ const middleware = applyMiddleware(...[sagaMiddleware]);
 const store = createStore(reducers, middleware);
 
 ReduxNL.setup(store, sagaMiddleware, {
+  defaultUrl: "https://example.com",
   delay: 1000, // <--- adds a network delay for testing slow connections
   isDev: false // <--- Things like delay and console.warns will be ignored when this is false
   defaultErrorMessage: ".." // <--- Custom fallback message
