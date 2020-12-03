@@ -14,6 +14,9 @@ import { listenForReduxNLActions } from "./listen-for-redux-nl-actions";
 /* Constants */
 let CurrentStore = null;
 
+const ReduxNLVerb = "@ReduxNL/verb";
+const ReduxNLPath = "@ReduxNL/path";
+
 export const ReduxNL = {
   setup: (store, sagaMiddleware, { delay, defaultUrl, defaultErrorMessage, isDev = false }) => {
     CurrentStore = store;
@@ -85,6 +88,7 @@ export const ReduxNL = {
   }) => {
     const requestAction = getRequestType(verb, path);
     const responseAction = getResponseType(verb, path);
+    
     let currentValue = null;
     let unsubscribe = null;
     const handleChange = () => {
@@ -110,7 +114,11 @@ export const ReduxNL = {
 
     CurrentStore.dispatch({
       type: requestAction,
-      payload,
+      payload: {
+        ...payload,
+        [ReduxNLVerb]: verb,
+        [ReduxNLPath]: path,
+      },
       meta
     });
 

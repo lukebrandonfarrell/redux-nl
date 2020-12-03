@@ -17,7 +17,6 @@ import { getReduxActionVerb } from "./get-redux-action-verb";
  */
 export function getReduxActionType(verb, path, suffix) {
   const actionVerb = getReduxActionVerb(verb);
-  const pathAsActionType = _startCase(path).replace(/\s/g, '');
 
-  return `@ReduxNL/${actionVerb}${pathAsActionType}${suffix}`;
+  return `@ReduxNL/${actionVerb}${path}${suffix}`;
 }
