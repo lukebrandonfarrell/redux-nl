@@ -53,6 +53,18 @@ export const ReduxNL = {
     });
   },
 
+  put: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
+    ReduxNL.dispatch({
+      verb: RestVerbs.Patch,
+      path,
+      payload,
+      meta,
+      onSuccess,
+      onFailure,
+      onFinal
+    });
+  },
+
   get: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Get,
