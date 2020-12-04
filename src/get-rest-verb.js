@@ -22,5 +22,7 @@ export function getRESTVerb(verb) {
     return RestVerbs.Post;
   case "Delete":
     return RestVerbs.Delete;
+  case "Put":
+    return RestVerbs.Put;
   }
 }

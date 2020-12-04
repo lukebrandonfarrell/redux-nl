@@ -8,9 +8,9 @@ import { RestVerbs } from "./rest-verbs";
 /**
  * Maps a REST verb to our action verb
  *
- * @param verb {"Get"|"Patch"|"Post"|"Delete"}
+ * @param verb {"Get"|"Patch"|"Post"|"Delete"|"Put"}
  *
- * @param {"Fetch"|"Update"|"Create"|"Delete"}
+ * @param {"Fetch"|"Update"|"Create"|"Delete"|"Put"}
  */
 export function getReduxActionVerb(verb) {
   switch (verb) {
@@ -22,5 +22,7 @@ export function getReduxActionVerb(verb) {
     return "Create";
   case RestVerbs.Delete:
     return "Delete";
+  case RestVerbs.Put:
+    return "Put";
   }
 }
