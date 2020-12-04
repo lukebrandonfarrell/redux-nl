@@ -55,7 +55,7 @@ export const ReduxNL = {
 
   put: (path, { payload, meta, onSuccess, onFailure, onFinal }) => {
     ReduxNL.dispatch({
-      verb: RestVerbs.Patch,
+      verb: RestVerbs.Put,
       path,
       payload,
       meta,
@@ -153,6 +153,20 @@ export const ReduxNL = {
           });
       });
     },
+    put: (path, { payload, meta }) => {
+      return new Promise((resolve, reject) => {
+          ReduxNL.put(path, {
+              payload,
+              meta,
+              onSuccess: action => {
+                  resolve(action);
+              },
+              onFailure: action => {
+                  reject(action);
+              }
+          });
+      });
+    },
     get: (path, { payload, meta }) => {
         return new Promise((resolve, reject) => {
             ReduxNL.get(path, {
@@ -205,6 +219,9 @@ export const ReduxNL = {
       post: (path) => {
         return getRequestType(RestVerbs.Post, path);
       },
+      put: (path) => {
+        return getRequestType(RestVerbs.Put, path);
+      },
       patch: (path) => {
         return getRequestType(RestVerbs.Patch, path);
       },
@@ -220,6 +237,9 @@ export const ReduxNL = {
       },
       post: (path) => {
         return getResponseType(RestVerbs.Post, path);
+      },
+      post: (path) => {
+        return getResponseType(RestVerbs.Put, path);
       },
       patch: (path) => {
         return getResponseType(RestVerbs.Patch, path);

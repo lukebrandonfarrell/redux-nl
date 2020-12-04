@@ -10,4 +10,5 @@ export const RestVerbs = {
     Post: "Post",
     Patch: "Patch",
     Delete: "Delete",
+    Put: "Put"
 }
