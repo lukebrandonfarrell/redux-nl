@@ -238,7 +238,7 @@ export const ReduxNL = {
       post: (path) => {
         return getResponseType(RestVerbs.Post, path);
       },
-      post: (path) => {
+      put: (path) => {
         return getResponseType(RestVerbs.Put, path);
       },
       patch: (path) => {
