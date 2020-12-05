@@ -122,11 +122,14 @@ const CreateBrandResponse = ReduxNL.response.type.post("/user/brands/{slug}") ->
 const UpdateBrandResponse = ReduxNL.response.type.patch("/user/brands/{slug}") -> UpdateUserBrandsSlugResponse
 const DeleteBrandResponse = ReduxNL.response.type.delete("/user/brands/{slug}") -> DeleteUserBrandsSlugResponse
 const FetchBrandResponse = ReduxNL.response.type.get("/user/brands/{slug}") -> FetchUserBrandsSlugResponse
+const PutBrandResponse = ReduxNL.response.type.put("/user/brands/{slug}") -> PutUserBrandsSlugResponse
 
 const CreateBrandRequest = ReduxNL.request.type.post("/user/brands/{slug}") -> CreateUserBrandsSlugRequest
 const UpdateBrandRequest = ReduxNL.request.type.patch("/user/brands/{slug}") -> UpdateUserBrandsSlugRequest
 const DeleteBrandRequest = ReduxNL.request.type.delete("/user/brands/{slug}") -> DeleteUserBrandsSlugRequest
 const FetchBrandRequest = ReduxNL.request.type.get("/user/brands/{slug}") -> FetchUserBrandsSlugRequest
+const PutBrandRequest = ReduxNL.request.type.put("/user/brands/{slug}") -> PutUserBrandsSlugRequest
+
 ```
 
 ### Building URLs
