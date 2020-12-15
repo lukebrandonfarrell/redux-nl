@@ -25,13 +25,12 @@ export function* ReduxNLNetwork(action, baseUrl){
   const requestPromise = (baseUrl, payload = {}, meta = {}) => {
     return new Promise((resolve, reject) => {
       // Maps our payload and meta to snake case e.g. firstName -> first_name
-      const payloadInSnakeCase = _mapKeys(payload, (_, key) => _snakeCase(key));
-      const metaInSnakeCase = _omit(_mapKeys(meta, (_, key) => _snakeCase(key)), ["headers"]);
+      const metaInSnakeCase = _omit(meta, ["headers"]);
       const actionPathsWithVariables = requestPath.split("/").map((path) => {
         const pathAsSnakeCase = _snakeCase(path);
         // i.e. would replace /facts/id with /facts/34 (where id, is passed in payload as { id: 34 })
-        if(_hasIn(payloadInSnakeCase, pathAsSnakeCase)){
-          return payloadInSnakeCase[pathAsSnakeCase];
+        if(_hasIn(payload, pathAsSnakeCase)){
+          return payload[pathAsSnakeCase];
         }
 
         return path;
@@ -41,7 +40,7 @@ export function* ReduxNLNetwork(action, baseUrl){
       const url = createRequest.build(pathWithParams, metaInSnakeCase);
 
       createRequest
-        .request(baseUrl, requestVerb.toLowerCase(), url, payloadInSnakeCase, meta?.headers)
+        .request(baseUrl, requestVerb.toLowerCase(), url, payload, meta?.headers)
         .then(response => {
           resolve(response);
         })

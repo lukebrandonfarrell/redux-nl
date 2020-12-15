@@ -136,7 +136,7 @@ const PutBrandRequest = ReduxNL.request.type.put("/user/brands/{slug}") -> PutUs
 
 #### Request Parameters
 
-All paramters in `payload` are passed as data to POST, UPDATE and DELETE requests. These are automatically mapped to snake_case. i.e.
+All paramters in `payload` are passed as data to POST, UPDATE and DELETE requests.
 
 ```js
 ReduxNl.post("/user/brands", {
@@ -149,12 +149,12 @@ ReduxNl.post("/user/brands", {
 });
 ```
 
-Will be mapped into the request as such (the case is transformed to snake_case):
+Will be mapped into the request as such:
 
 ```
-POST https://my-example-api//user/brands?api_token=...
+POST https://my-example-api//user/brands?apiToken=...
 {
-  has_credit: true
+  hasCredit: true
 }
 ```
 
@@ -175,7 +175,7 @@ You can add headers in the meta object of your request.
 
 #### Query Parameters
 
-Query parameters e.g. `https://my-example-api/user?api_token=..."` are automatically added to the URL via the `meta` key. i.e.
+Query parameters e.g. `https://my-example-api/user?apiToken=..."` are automatically added to the URL via the `meta` key. i.e.
 
 ```js
 ReduxNl.post("/user/brands", {
@@ -190,7 +190,7 @@ The call above will result in a URL as such `/user/brands?date=2020-11-21&token=
 
 #### Route Parameters
 
-Route parameters are dynamically replaced. tTake the following path: `/user/brands/id`, when a value with the key of `id` is passed thorugh the `payload`, then it is automatically replaced in the URL e.g. `/user/brands/id` -> `/user/brands/34`.
+Route parameters are dynamically replaced. Take the following path: `/user/brands/id`, when a value with the key of `id` is passed thorugh the `payload`, then it is automatically replaced in the URL e.g. `/user/brands/id` -> `/user/brands/34`.
 
 #### Local Chaining
 
