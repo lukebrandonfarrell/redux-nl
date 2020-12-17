@@ -19,10 +19,10 @@ import { config } from "./config";
  * @return {IterableIterator<*>}
  */
 function* AbstractNetworkSaga(
-  action,
-  baseUrl,
-  api,
-  type,
+  action: any,
+  baseUrl: string,
+  api: any,
+  type: string,
   key = "requestTimestamp"
 ) {
   const payloadChain = action.payload?.chain ?? {};

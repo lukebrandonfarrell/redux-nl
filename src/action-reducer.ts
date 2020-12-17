@@ -20,7 +20,7 @@ const initialState = {
  * @param action
  * @return {*}
  */
-export const ActionReducer = (state = initialState, action) => {
+export const ActionReducer = (state = initialState, action: any) => {
   return {
     ...state,
     ...action

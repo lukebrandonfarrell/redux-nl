@@ -4,9 +4,7 @@
  * for a specific path with the Response suffix
  * i.e. GET /fetch -> FetchFactsResponse
  */
-
-import { getReduxActionType } from "./get-redux-action-type";
-
+import { RestVerbType } from "./rest-verbs";
 /**
  * Gets our reducer value key from type for Response
  *
@@ -15,6 +13,4 @@ import { getReduxActionType } from "./get-redux-action-type";
  *
  * @return {string}
  */
-export function getResponseType(verb, path) {
-  return getReduxActionType(verb, path, "Response");
-}
+export declare function getResponseType(verb: RestVerbType, path: string): string;

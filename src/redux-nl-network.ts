@@ -17,16 +17,16 @@ import { getResponseType } from "./get-response-type";
 const ReduxNLVerb = "@ReduxNL/verb";
 const ReduxNLPath = "@ReduxNL/path";
 
-export function* ReduxNLNetwork(action, baseUrl){
+export function* ReduxNLNetwork(action: any, baseUrl: string){
   const requestVerb = action.payload[ReduxNLVerb];
   const requestPath = action.payload[ReduxNLPath];
   const responseAction = getResponseType(requestVerb, requestPath);
 
-  const requestPromise = (baseUrl, payload = {}, meta = {}) => {
+  const requestPromise = (baseUrl: string, payload: any = {}, meta: any = {}) => {
     return new Promise((resolve, reject) => {
       // Maps our payload and meta to snake case e.g. firstName -> first_name
       const metaInSnakeCase = _omit(meta, ["headers"]);
-      const actionPathsWithVariables = requestPath.split("/").map((path) => {
+      const actionPathsWithVariables = requestPath.split("/").map((path: string): any => {
         const pathAsSnakeCase = _snakeCase(path);
         // i.e. would replace /facts/id with /facts/34 (where id, is passed in payload as { id: 34 })
         if(_hasIn(payload, pathAsSnakeCase)){
