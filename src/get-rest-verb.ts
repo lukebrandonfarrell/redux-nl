@@ -12,7 +12,7 @@ import { RestVerbs } from "./rest-verbs";
  *
  * @param {"Get"|"Patch"|"Post"|"Delete"}
  */
-export function getRESTVerb(verb) {
+export function getRESTVerb(verb: string) {
   switch (verb) {
   case "Fetch":
     return RestVerbs.Get;

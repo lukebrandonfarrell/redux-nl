@@ -6,6 +6,7 @@
  */
 
 import { getReduxActionType } from "./get-redux-action-type";
+import { RestVerbType } from "./rest-verbs";
 
 /**
  * Gets our reducer value key from type for Request
@@ -15,6 +16,6 @@ import { getReduxActionType } from "./get-redux-action-type";
  *
  * @return {string}
  */
-export function getRequestType(verb, path) {
+export function getRequestType(verb: RestVerbType, path: string) {
   return getReduxActionType(verb, path, "Request");
 }

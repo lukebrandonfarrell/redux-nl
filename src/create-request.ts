@@ -16,8 +16,8 @@ import Axios from "axios";
  * @param headers
  * @return {Promise}
  */
-const axios = (base, method, path, options = {}, headers) => {
-  const params = {
+const axios = (base: string, method: string, path: string, options: object = {}, headers: object) => {
+  const params: any = {
     method,
     url: `${base}${path}`,
     headers: {
@@ -41,7 +41,7 @@ const axios = (base, method, path, options = {}, headers) => {
 };
 
 const createRequest = {
-  request: (base, method, path, options, headers) => {
+  request: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, method, path, { data: { ...options } }, headers);
   },
 
@@ -54,7 +54,7 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  get: (base, path, options, headers) => {
+  get: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, "get", path, options, headers);
   },
 
@@ -67,7 +67,7 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  post: (base, path, options, headers) => {
+  post: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, "post", path, { data: { ...options } }, headers);
   },
 
@@ -80,7 +80,7 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  put: (base, path, options, headers) => {
+  put: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, "put", path, { data: { ...options } }, headers);
   },
 
@@ -93,7 +93,7 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  patch: (base, path, options, headers) => {
+  patch: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, "patch", path, { data: { ...options } }, headers);
   },
 
@@ -106,7 +106,7 @@ const createRequest = {
    * @param options
    * @return {Promise}
    */
-  destroy: (base, path, options, headers) => {
+  destroy: (base: string, method: string, path: string, options: object = {}, headers: object) => {
     return axios(base, "delete", path, options, headers);
   },
 
@@ -118,7 +118,7 @@ const createRequest = {
    *
    * @return string
    */
-  build: (url, params) => {
+  build: (url: string, params: object = {}) => {
     if (!params) return url;
 
     /* Loop through parameter objects and

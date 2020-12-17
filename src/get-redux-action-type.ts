@@ -5,6 +5,7 @@
 
 import _startCase from "lodash.startcase";
 import { getReduxActionVerb } from "./get-redux-action-verb";
+import { RestVerbType } from "./rest-verbs";
 
 /**
  * Gets our reducer value key from type
@@ -15,7 +16,7 @@ import { getReduxActionVerb } from "./get-redux-action-verb";
  *
  * @return {string}
  */
-export function getReduxActionType(verb, path, suffix) {
+export function getReduxActionType(verb: RestVerbType, path: string, suffix: string): string {
   const actionVerb = getReduxActionVerb(verb);
   const pathAsActionType = _startCase(path).replace(/\s/g, '');
 
