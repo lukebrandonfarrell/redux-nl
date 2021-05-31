@@ -20,7 +20,7 @@ const ReduxNLPath = "@ReduxNL/path";
 export function* ReduxNLNetwork(action: any, baseUrl: string){
   const requestVerb = action.payload[ReduxNLVerb];
   const requestPath = action.payload[ReduxNLPath];
-  const responseAction = getResponseType(requestVerb, requestPath);
+  const responseAction = !action.replaceType ? getResponseType(requestVerb, requestPath) : getResponseType(requestVerb, action.replaceType);
 
   const requestPromise = (baseUrl: string, payload: any = {}, meta: any = {}) => {
     return new Promise((resolve, reject) => {

@@ -56,11 +56,12 @@ export const ReduxNL = {
    * 
    * @param {string} path the endpoint to call
    */
-  post: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: { payload: object, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
+  post: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: { payload: object, replaceType?: string, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Post,
       path,
       payload,
+      replaceType,
       meta,
       onSuccess,
       onFailure,
@@ -75,11 +76,12 @@ export const ReduxNL = {
    * 
    * @param {string} path the endpoint to call
    */
-  patch: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: { payload: object, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
+  patch: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: { payload: object, replaceType?: string, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Patch,
       path,
       payload,
+      replaceType,
       meta,
       onSuccess,
       onFailure,
@@ -94,11 +96,12 @@ export const ReduxNL = {
    * 
    * @param {string} path the endpoint to call
    */
-  put: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: { payload: object, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
+  put: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: { payload: object, replaceType?: string, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Put,
       path,
       payload,
+      replaceType,
       meta,
       onSuccess,
       onFailure,
@@ -113,11 +116,12 @@ export const ReduxNL = {
    * 
    * @param {string} path the endpoint to call
    */
-  get: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: { payload: object, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
+  get: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: { payload: object, replaceType?: string, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Get,
       path,
       payload,
+      replaceType,
       meta,
       onSuccess,
       onFailure,
@@ -132,11 +136,12 @@ export const ReduxNL = {
    * 
    * @param {string} path the endpoint to call
    */
-  delete: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: { payload: object, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
+  delete: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: { payload: object, replaceType?: string, meta: object, onSuccess?: (action: object) => void, onFailure?: (action: object) => void, onFinal?: (action: object) => void }) => {
     ReduxNL.dispatch({
       verb: RestVerbs.Delete,
       path,
       payload,
+      replaceType,
       meta,
       onSuccess,
       onFailure,
@@ -148,6 +153,7 @@ export const ReduxNL = {
     verb,
     path,
     payload,
+    replaceType,
     meta,
     onSuccess,
     onFailure,
@@ -157,12 +163,13 @@ export const ReduxNL = {
     path: string,
     payload: object,
     meta: object,
+    replaceType?: string,
     onSuccess?: (action: object) => void,
     onFailure?: (action: object) => void,
     onFinal?: (action: object) => void,
   }) => {
-    const requestAction = getRequestType(verb, path);
-    const responseAction = getResponseType(verb, path);
+    const requestAction = !replaceType ? getRequestType(verb, path) : getRequestType(verb, replaceType);
+    const responseAction = !replaceType ? getResponseType(verb, path) : getResponseType(verb, replaceType);
 
     let currentValue: object | undefined;
     let unsubscribe: Unsubscribe | undefined;
@@ -194,6 +201,7 @@ export const ReduxNL = {
         [ReduxNLVerb]: verb,
         [ReduxNLPath]: path,
       },
+      replaceType,
       meta
     });
 
@@ -202,13 +210,15 @@ export const ReduxNL = {
 
   // Promise support :)
   promise: {
-    post: (path: string, { payload, meta }: {
+    post: (path: string, { payload, replaceType, meta }: {
       payload: object,
+      replaceType: string,
       meta: object
     }) => {
       return new Promise((resolve, reject) => {
         ReduxNL.post(path, {
           payload,
+          replaceType,
           meta,
           onSuccess: action => {
             resolve(action);
@@ -219,13 +229,15 @@ export const ReduxNL = {
         });
       });
     },
-    put: (path: string, { payload, meta }: {
+    put: (path: string, { payload, replaceType, meta }: {
       payload: object,
+      replaceType: string,
       meta: object
     }) => {
       return new Promise((resolve, reject) => {
         ReduxNL.put(path, {
           payload,
+          replaceType,
           meta,
           onSuccess: action => {
             resolve(action);
@@ -236,13 +248,15 @@ export const ReduxNL = {
         });
       });
     },
-    get: (path: string, { payload, meta }: {
+    get: (path: string, { payload, replaceType, meta }: {
       payload: object,
+      replaceType: string,
       meta: object
     }) => {
       return new Promise((resolve, reject) => {
         ReduxNL.get(path, {
           payload,
+          replaceType,
           meta,
           onSuccess: action => {
             resolve(action);
@@ -253,13 +267,15 @@ export const ReduxNL = {
         });
       });
     },
-    patch: (path: string, { payload, meta }: {
+    patch: (path: string, { payload, replaceType, meta }: {
       payload: object,
+      replaceType: string,
       meta: object
     }) => {
       return new Promise((resolve, reject) => {
         ReduxNL.get(path, {
           payload,
+          replaceType,
           meta,
           onSuccess: action => {
             resolve(action);
@@ -270,13 +286,15 @@ export const ReduxNL = {
         });
       });
     },
-    delete: (path: string, { payload, meta }: {
+    delete: (path: string, { payload, replaceType, meta }: {
       payload: object,
+      replaceType: string,
       meta: object
     }) => {
       return new Promise((resolve, reject) => {
         ReduxNL.get(path, {
           payload,
+          replaceType,
           meta,
           onSuccess: action => {
             resolve(action);

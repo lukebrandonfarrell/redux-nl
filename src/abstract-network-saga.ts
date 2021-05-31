@@ -27,6 +27,8 @@ function* AbstractNetworkSaga(
 ) {
   const payloadChain = action.payload?.chain ?? {};
   const metaChain = action.meta?.chain ?? {};
+  
+  const replaceType = action.replaceType ?? {};
 
   try {
     const payload = action.payload ?? {};
@@ -45,6 +47,7 @@ function* AbstractNetworkSaga(
         [key]: new Date().toISOString(),
         ...payloadChain
       },
+      replaceType: replaceType,
       meta: { ...metaChain },
       error: false
     });
@@ -58,6 +61,7 @@ function* AbstractNetworkSaga(
     yield put({
       type,
       payload: { status, message, ...data, ...payloadChain },
+      replaceType: replaceType,
       meta: { ...metaChain },
       error: true
     });
