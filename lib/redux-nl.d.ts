@@ -32,8 +32,9 @@ export declare const ReduxNL: {
      *
      * @param {string} path the endpoint to call
      */
-    post: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: {
+    post: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         payload: object;
+        replaceType?: string | undefined;
         meta: object;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
@@ -46,8 +47,9 @@ export declare const ReduxNL: {
    *
    * @param {string} path the endpoint to call
    */
-    patch: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: {
+    patch: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         payload: object;
+        replaceType?: string | undefined;
         meta: object;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
@@ -60,8 +62,9 @@ export declare const ReduxNL: {
    *
    * @param {string} path the endpoint to call
    */
-    put: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: {
+    put: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         payload: object;
+        replaceType?: string | undefined;
         meta: object;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
@@ -74,8 +77,9 @@ export declare const ReduxNL: {
    *
    * @param {string} path the endpoint to call
    */
-    get: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: {
+    get: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         payload: object;
+        replaceType?: string | undefined;
         meta: object;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
@@ -88,41 +92,48 @@ export declare const ReduxNL: {
    *
    * @param {string} path the endpoint to call
    */
-    delete: (path: string, { payload, meta, onSuccess, onFailure, onFinal }: {
+    delete: (path: string, { payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         payload: object;
+        replaceType?: string | undefined;
         meta: object;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
         onFinal?: ((action: object) => void) | undefined;
     }) => void;
-    dispatch: ({ verb, path, payload, meta, onSuccess, onFailure, onFinal }: {
+    dispatch: ({ verb, path, payload, replaceType, meta, onSuccess, onFailure, onFinal }: {
         verb: RestVerbType;
         path: string;
         payload: object;
         meta: object;
+        replaceType?: string | undefined;
         onSuccess?: ((action: object) => void) | undefined;
         onFailure?: ((action: object) => void) | undefined;
         onFinal?: ((action: object) => void) | undefined;
     }) => void;
     promise: {
-        post: (path: string, { payload, meta }: {
+        post: (path: string, { payload, replaceType, meta }: {
             payload: object;
+            replaceType: string;
             meta: object;
         }) => Promise<unknown>;
-        put: (path: string, { payload, meta }: {
+        put: (path: string, { payload, replaceType, meta }: {
             payload: object;
+            replaceType: string;
             meta: object;
         }) => Promise<unknown>;
-        get: (path: string, { payload, meta }: {
+        get: (path: string, { payload, replaceType, meta }: {
             payload: object;
+            replaceType: string;
             meta: object;
         }) => Promise<unknown>;
-        patch: (path: string, { payload, meta }: {
+        patch: (path: string, { payload, replaceType, meta }: {
             payload: object;
+            replaceType: string;
             meta: object;
         }) => Promise<unknown>;
-        delete: (path: string, { payload, meta }: {
+        delete: (path: string, { payload, replaceType, meta }: {
             payload: object;
+            replaceType: string;
             meta: object;
         }) => Promise<unknown>;
     };
