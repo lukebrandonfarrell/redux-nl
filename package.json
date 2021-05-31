@@ -1,6 +1,5 @@
 {
   "_from": "redux-nl",
-  "_id": "redux-nl@0.1.14",
   "_inBundle": false,
   "_integrity": "sha512-nH4sbHMnUjdo8UcqYL5TWHTueoBQhiiFN73XJ96lzM6oHSOw9B6FtrdVcFO0vejYbIsmGqHl2vfdRSIYAzgfFQ==",
   "_location": "/redux-nl",
@@ -34,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/aspect-apps/redux-nl/issues"
   },
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "dependencies": {
     "axios": "^0.19.2",
     "lodash.castarray": "^4.4.0",
@@ -71,7 +70,7 @@
     "flow": "flow",
     "test": "echo \"Error: no test specified\""
   },
-  "version": "1.3.0",
+  "version": "1.4.0",
   "devDependencies": {
     "@redux-saga/types": "^1.1.0",
     "@types/lodash.castarray": "^4.4.6",
