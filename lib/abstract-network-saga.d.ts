@@ -16,6 +16,7 @@
 declare function AbstractNetworkSaga(action: any, baseUrl: string, api: any, type: string, key?: string): Generator<import("redux-saga/effects").CallEffect<unknown> | import("redux-saga/effects").PutEffect<{
     type: string;
     payload: any;
+    replaceType: any;
     meta: any;
     error: boolean;
 }>, void, unknown>;
