@@ -145,7 +145,7 @@ ReduxNl.post("/user/brands", {
   },
   meta: {
     apiToken: "...",
-  },
+  }
 });
 ```
 
@@ -207,6 +207,24 @@ ReduxNl.post("/user/brands", {
 ```
 
 Any data inside the `chain` object will be passed through to the `CreateUserBrandsResponse`.
+
+#### Replace Type (Without Route Parameters)
+
+For APIs without route parameters (i.e. APIs with no path), include a `replaceType` to differentiate the action type. i.e.
+
+```js
+ReduxNl.post("", {
+  payload: {
+    hasCredit: false,
+  },
+  meta: {
+    apiToken: "...",
+  },
+  replaceType: "login"
+});
+```
+
+This will dispatch a `CreateLoginResponse` to the store once and you can listen to this action in your reducer.
 
 ### Resources
 
