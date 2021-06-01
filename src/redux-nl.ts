@@ -197,9 +197,10 @@ export const ReduxNL = {
     CurrentStore?.dispatch({
       type: requestAction,
       payload: {
-        ...payload,
-        [ReduxNLVerb]: verb,
-        [ReduxNLPath]: path,
+          ...{ data: payload },
+          [ReduxNLVerb]: verb,
+          [ReduxNLPath]: path,
+        
       },
       replaceType,
       meta
