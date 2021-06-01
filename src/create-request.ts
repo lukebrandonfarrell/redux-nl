@@ -42,7 +42,7 @@ const axios = (base: string, method: string, path: string, options: object = {},
 
 const createRequest = {
   request: (base: string, method: string, path: string, options: object = {}, headers: object) => {
-    return axios(base, method, path, { data: { ...options } }, headers);
+    return axios(base, method, path, { ...options }, headers);
   },
 
   /**
