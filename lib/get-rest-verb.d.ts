@@ -9,4 +9,4 @@
  *
  * @param {"Get"|"Patch"|"Post"|"Delete"}
  */
-export declare function getRESTVerb(verb: string): "Get" | "Post" | "Patch" | "Delete" | "Put" | undefined;
+export declare function getRESTVerb(verb: string): import("./rest-verbs").RestVerbType | undefined;

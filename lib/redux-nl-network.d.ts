@@ -2,4 +2,4 @@
  * @author Luke Brandon Farrell
  * @description
  */
-export declare function ReduxNLNetwork(action: any, baseUrl: string): Generator<import("redux-saga/effects").CallEffect<void>, void, unknown>;
+export declare function ReduxNLNetwork(action: any, baseUrl: string): Generator<import("redux-saga/effects").CallEffect<unknown>, void, unknown>;
