@@ -35,7 +35,7 @@
   },
   "bundleDependencies": [],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "lodash.castarray": "^4.4.0",
     "lodash.hasin": "^4.5.2",
     "lodash.mapkeys": "^4.6.0",
