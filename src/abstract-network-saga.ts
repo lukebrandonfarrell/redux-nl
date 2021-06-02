@@ -24,10 +24,10 @@ function* AbstractNetworkSaga(
   api: any,
   type: string,
   key = "requestTimestamp"
-) {
+): any {
   const payloadChain = action.payload?.chain ?? {};
   const metaChain = action.meta?.chain ?? {};
-  
+
   const replaceType = action.replaceType ?? {};
 
   try {
@@ -35,21 +35,20 @@ function* AbstractNetworkSaga(
     const meta = action.meta ?? {};
 
     // In development we can add a delay to successful network requests
-    if(config.isDev) yield delay(config.networkDelay);
+    if (config.isDev) yield delay(config.networkDelay);
 
-    const data = yield call(api, baseUrl, payload, meta);
-    console.log({ data, payload });
+    const data: any = yield call(api, baseUrl, payload, meta);
 
     yield put({
       type,
       payload: {
         data,
         [key]: new Date().toISOString(),
-        ...payloadChain
+        ...payloadChain,
       },
       replaceType: replaceType,
       meta: { ...metaChain },
-      error: false
+      error: false,
     });
   } catch (e) {
     if (config.isDev) console.warn(e); // eslint-disable-line no-console
@@ -63,7 +62,7 @@ function* AbstractNetworkSaga(
       payload: { status, message, ...data, ...payloadChain },
       replaceType: replaceType,
       meta: { ...metaChain },
-      error: true
+      error: true,
     });
   }
 }
