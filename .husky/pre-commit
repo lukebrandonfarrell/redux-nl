@@ -3,3 +3,4 @@
 
 npm run pre-commit
 npx tsc
+git add .
